@@ -14,6 +14,8 @@ let prepared;
 const npmrc = tempy.file({name: '.npmrc'});
 
 async function verifyConditions(pluginConfig, context) {
+  pluginConfig.packageManager = defaultTo(pluginConfig.packageManager, 'npm');
+  
   // If the npm publish plugin is used and has `npmPublish`, `tarballDir` or `pkgRoot` configured, validate them now in order to prevent any release if the configuration is wrong
   if (context.options.publish) {
     const publishPlugin =
