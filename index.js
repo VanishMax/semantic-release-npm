@@ -15,6 +15,7 @@ const npmrc = tempy.file({name: '.npmrc'});
 
 async function verifyConditions(pluginConfig, context) {
   pluginConfig.packageManager = defaultTo(pluginConfig.packageManager, 'npm');
+  console.warn('VEREFY', pluginConfig);
   
   // If the npm publish plugin is used and has `npmPublish`, `tarballDir` or `pkgRoot` configured, validate them now in order to prevent any release if the configuration is wrong
   if (context.options.publish) {
@@ -49,6 +50,7 @@ async function verifyConditions(pluginConfig, context) {
 }
 
 async function prepare(pluginConfig, context) {
+  console.warn('PREPARE', pluginConfig);
   const errors = verified ? [] : verifyNpmConfig(pluginConfig);
 
   setLegacyToken(context);
